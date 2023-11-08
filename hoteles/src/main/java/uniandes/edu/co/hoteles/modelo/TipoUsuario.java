@@ -15,24 +15,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="TBL_USUARIO")
-public class Usuario {
+@Table(name="TBL_TIPO_USUARIO")
+public class TipoUsuario {
 
 
     @Id
-    @SequenceGenerator(name="USUARIO_ID_GENERATOR", sequenceName="SQ_USUARIO", initialValue=1, allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USUARIO_ID_GENERATOR")    
+    @SequenceGenerator(name="TIPO_USUARIO_ID_GENERATOR", sequenceName="SQ_TIPO_USUARIO", initialValue=1, allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TIPO_USUARIO_ID_GENERATOR")    
     private Long id;
 
-    private Long tipoUsuarioId;
+    private String descripcion;
 
-    private String tipoDocumento;
-
-    private String numeroDocumento;
+    private Long estado;
     
-    private String nombre;
-
-    private String correo;  
 
     
 }

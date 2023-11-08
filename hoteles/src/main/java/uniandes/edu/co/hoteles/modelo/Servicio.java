@@ -3,50 +3,35 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
-import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="servicios")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name="TBL_SERVICIO")
 public class Servicio {
 
-   @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+    @Id
+    @SequenceGenerator(name="SERVICIO_ID_GENERATOR", sequenceName="SQ_SERVICIO", initialValue=1, allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SERVICIO_ID_GENERATOR")    
+    private Long id;
 
-    public Integer getId() {
-        return id;
-    }
+    private String nombre;
+    private Long capacidad;
+    private Double profundidad;
+    private String horarioApertura;
+    private String horarioCierre;
+    private Long incluido;
+    private Long maquinas;
+    private String estilo;
+    private Double duracion;
+    private Double costo;
+    private Long tipoServicioId;
 
-    public void setId(Integer id) {
-        this.id = id;
-    } 
-
-    private String habitacion;
-    private double costo;
-    private String descripcion;
-    private Date fecha;
-
-    public Servicio(String habitacion, double costo, String descripcion, Date fecha) {
-        this.habitacion = habitacion;
-        this.costo = costo;
-        this.descripcion = descripcion;
-        this.fecha = fecha;
-    }
-
-    @Override
-    public String toString() {
-        return "Habitación: " + habitacion + ", Costo: " + costo + ", Descripción: " + descripcion + ", Fecha: " + fecha;
-    }
-
-    public String obtenerInfo() {
-        return "Habitación: " + habitacion + ", Costo: " + costo + ", Descripción: " + descripcion + ", Fecha: " + fecha;
-    }
-
-    public void actualizarInfo(String habitacion, double costo, String descripcion, Date fecha) {
-        this.habitacion = habitacion;
-        this.costo = costo;
-        this.descripcion = descripcion;
-        this.fecha = fecha;
-    }
+  
 }

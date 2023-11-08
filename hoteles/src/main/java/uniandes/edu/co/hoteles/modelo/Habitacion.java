@@ -3,66 +3,28 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+@Data
+@AllArgsConstructor
 @Entity
-@Table(name="habitaciones")
+@Table(name="HABITACION")
 public class Habitacion {
 
-   @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+    @Id
+    @SequenceGenerator(name="HABITACION_ID_GENERATOR", sequenceName="SQ_HABITACION", initialValue=1, allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HABITACION_ID_GENERATOR")
+    private Integer habitacionId;
 
-    public Integer getId() {
-        return id;
-    }
+    // private String tipo;
+    // private int capacidad;
+    // private boolean television;
+    // private boolean minibar;
+    // private boolean cafeteria;
+    // private double costoNoche;
+    // private String numero;
 
-    public void setId(Integer id) {
-        this.id = id;
-    } 
-
-    private String tipo;
-    private int capacidad;
-    private boolean television;
-    private boolean minibar;
-    private boolean cafeteria;
-    private double costoNoche;
-    private String numero;
-
-    public Habitacion(String tipo, int capacidad, boolean television, boolean minibar,
-                      boolean cafeteria, double costoNoche, String numero) {
-        this.tipo = tipo;
-        this.capacidad = capacidad;
-        this.television = television;
-        this.minibar = minibar;
-        this.cafeteria = cafeteria;
-        this.costoNoche = costoNoche;
-        this.numero = numero;
-    }
-
-    @Override
-    public String toString() {
-        return "Tipo: " + tipo + ", Capacidad: " + capacidad +
-                ", Tiene televisión: " + television + ", Tiene minibar: " + minibar +
-                ", Tiene cafetería: " + cafeteria + ", Costo por noche: " + costoNoche +
-                ", Número de habitación: " + numero;
-    }
-
-    public String obtenerInfo() {
-        return "Tipo: " + tipo + ", Capacidad: " + capacidad +
-                ", Tiene televisión: " + television + ", Tiene minibar: " + minibar +
-                ", Tiene cafetería: " + cafeteria + ", Costo por noche: " + costoNoche +
-                ", Número de habitación: " + numero;
-    }
-
-    public void actualizarInfo(String tipo, int capacidad, boolean television, boolean minibar,
-                                boolean cafeteria, double costoNoche, String numero) {
-        this.tipo = tipo;
-        this.capacidad = capacidad;
-        this.television = television;
-        this.minibar = minibar;
-        this.cafeteria = cafeteria;
-        this.costoNoche = costoNoche;
-        this.numero = numero;
-    }
-}
+}    

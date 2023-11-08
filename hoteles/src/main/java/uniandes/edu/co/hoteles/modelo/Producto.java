@@ -3,45 +3,25 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="productos")
-public class Producto {
+@Table(name="TBL_PRODUCTO")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Producto {   
 
-   @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+    @Id
+    @SequenceGenerator(name="PRODUCTO_ID_GENERATOR", sequenceName="SQ_PRODUCTO", initialValue=1, allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="PRODUCTO_ID_GENERATOR")    
+    private Long id;
 
-    public Integer getId() {
-        return id;
-    }
+    private String descripcion;
 
-    public void setId(Integer id) {
-        this.id = id;
-    } 
-
-    private String nombre;
-    private double costo;
-
-    public Producto(String nombre, double costo) {
-        this.nombre = nombre;
-        this.costo = costo;
-    }
-
-    @Override
-    public String toString() {
-        return "Nombre: " + nombre + ", Costo: " + costo;
-    }
-
-    public String obtenerInfo() {
-        return "Nombre: " + nombre + ", Costo: " + costo;
-    }
-
-    public void actualizarInfo(String nombre, double costo) {
-        this.nombre = nombre;
-        this.costo = costo;
-    }
-
-    
+    private Long estado;
 }
