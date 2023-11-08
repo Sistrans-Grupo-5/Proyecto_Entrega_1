@@ -7,24 +7,26 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name="HABITACION")
+@Table(name="TBL_HABITACION")
 public class Habitacion {
 
     @Id
     @SequenceGenerator(name="HABITACION_ID_GENERATOR", sequenceName="SQ_HABITACION", initialValue=1, allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HABITACION_ID_GENERATOR")
-    private Integer habitacionId;
 
-    // private String tipo;
-    // private int capacidad;
-    // private boolean television;
-    // private boolean minibar;
-    // private boolean cafeteria;
-    // private double costoNoche;
-    // private String numero;
+    private Long id;
+    private Long capacidad;
+    private Long television;
+    private Long minibar;
+    private Long cafetera;
+    private Double costoNoche;
+    private String numero;
+    private Long tipoHabitacionId;
 
 }    
