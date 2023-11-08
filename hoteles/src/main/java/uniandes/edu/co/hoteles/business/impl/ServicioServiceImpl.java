@@ -1,5 +1,7 @@
 package uniandes.edu.co.hoteles.business.impl;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +45,19 @@ public class ServicioServiceImpl implements ServicioService {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public List<ServicioDTO> findAll() {
+        List<ServicioDTO> servicioDTOs = new ArrayList<>();
+        repository.findAll().forEach(s -> servicioDTOs.add(entityToDTO(s)));
+        return servicioDTOs;
+    }
+
+
+    private ServicioDTO entityToDTO(Servicio servcio) {
+        ServicioDTO dto = new ServicioDTO(servcio.getId(), servcio.getNombre(), servcio.getCapacidad(), servcio.getProfundidad(), servcio.getHorarioApertura(), servcio.getHorarioCierre(), servcio.getIncluido().equals(1L) ? true : false, servcio.getMaquinas(), servcio.getEstilo(), servcio.getDuracion(), servcio.getCosto(), servcio.getTipoServicioId());
+        return dto;
     }
 
 
