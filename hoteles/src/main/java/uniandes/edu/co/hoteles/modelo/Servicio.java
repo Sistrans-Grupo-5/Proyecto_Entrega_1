@@ -19,8 +19,8 @@ public class Servicio {
     @Id
     @SequenceGenerator(name="SERVICIO_ID_GENERATOR", sequenceName="SQ_SERVICIO", initialValue=1, allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SERVICIO_ID_GENERATOR")    
+    
     private Long id;
-
     private String nombre;
     private Long capacidad;
     private Double profundidad;
