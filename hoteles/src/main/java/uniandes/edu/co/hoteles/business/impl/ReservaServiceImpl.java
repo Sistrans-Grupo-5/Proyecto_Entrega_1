@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import uniandes.edu.co.hoteles.business.ReservaService;
@@ -66,9 +65,17 @@ public class ReservaServiceImpl implements ReservaService {
     
     private ReservaDTO entityToDTO(Reserva reserva) {
         SimpleDateFormat sdf =new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        ReservaDTO dto = new ReservaDTO(reserva.getId(), sdf.format(reserva.getCheckin()), sdf.format(reserva.getCheckout()),  reserva.getNum_personas(), reserva.getUsuarioId(), reserva.getPlanconsumoId(), reserva.getHabitacionId());
+        ReservaDTO dto = new ReservaDTO(reserva.getId(), sdf.format(reserva.getCheckin()), sdf.format(reserva.getCheckout()) ,  reserva.getNum_personas(), reserva.getUsuarioId(), reserva.getPlanconsumoId(), reserva.getHabitacionId());
         return dto;
     }
+
+    @Override
+    public List<ReservaDTO> findBookingByUserDocument(String userDocument) {
+        List<ReservaDTO> reservas = new ArrayList<>();
+        List<Reserva> reservasEntities =  repository.findBookingByUserDocument(userDocument);
+        reservasEntities.forEach(r -> reservas.add(entityToDTO(r)));
+        return reservas;
+   }
 
 
     

@@ -13,5 +13,7 @@ public interface ReservaService {
     public Long delete(Long idreserva);
 
     public List<ReservaDTO> findAll();
+
+    public List<ReservaDTO> findBookingByUserDocument(String userDocument);
     
 }
