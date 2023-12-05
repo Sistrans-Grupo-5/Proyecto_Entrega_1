@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Hotel</title>
+    <link rel="stylesheet" type="text/css" href="/hoteles/src/main/resources/Sta/C/bootstrap.min.css">
+    <link rel="stylesheet" href="/hoteles/src/main/resources/Sta/C/variables.css">
+</head>
+
+<body>
+    </br>
+    <form th:action="@{/HOTEL/new/save}" method="post">
+        <div th:replace="~{fragments/hotelForm :: hotelForm(titulo='Crear hotel')}">
+        </div>
+    </form>
+</body>
+
+</html>
